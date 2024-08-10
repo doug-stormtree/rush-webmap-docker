@@ -6,7 +6,7 @@ We would like to recognize that the R.U.S.H. Initiative is exploring this work o
 Visit our website [here](https://whatstherush.ca).
 
 ## For anyone
-If you have any questions or want to to contribute to the R.U.S.H. Initiative, either as a developer or in some other capacity, feel free to reach out to our team lead _Anne-Marie Daniel_ -- annemarie@naturnd.com, or one of our developers _Doug Stormtree_ -- Doug@naturnd.com, _Sam Morris_ -- dodobird181@gmail.com.
+If you have any questions or want to to contribute to the R.U.S.H. Initiative, either as a developer or in some other capacity, feel free to reach out to our team lead _Anne-Marie Daniel_ -- annemarie@naturnd.com, or one of our developers _Doug Stormtree_ -- Doug@naturnd.com, and _Sam Morris_ -- dodobird181@gmail.com.
 
 ## For developers
 We use GitHub issues to track project contributions. If you would like to contribute please make a fork and open a pull-request against this repository.
