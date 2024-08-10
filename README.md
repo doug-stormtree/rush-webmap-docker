@@ -1,5 +1,5 @@
 # What's The RUSH?
-The Resilient Urban Systems and Habitat (or R.U.S.H.) Initiative is a collective mapping effort that leverages both community knowledge and government data to locally idenfity, track, and share climate change data, community resources, and implemented solutions.
+The Resilient Urban Systems and Habitat (or R.U.S.H.) Initiative is a collective mapping effort that leverages both community knowledge and government data to idenfity, track, and share climate change data, community resources, and implemented solutions.
 
 TWe would like to recognize that the R.U.S.H. Initiative is exploring this work on the unceded and unsurrendered territories of the lək̓ʷəŋən and SENĆOŦEN speaking peoples. Maps have a long history of erasure of Indigenous cultures and territories. Our goal is to promote tools that support the healing of ecosystems and communities so that all beings can live their best life.
 
