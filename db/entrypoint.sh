@@ -1,8 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 set -e
-
-# Start PostgreSQL in the background
-docker-entrypoint.sh postgres &
 
 # Function to wait for PostgreSQL to be ready
 wait_for_postgres() {
@@ -32,6 +29,12 @@ create_user_and_db() {
 EOSQL
 }
 
+# TODO: Delete this file, use python file only instead of two files for entrypoint.
+# See: https://chatgpt.com/c/e7694984-af8e-4cb7-946d-188d36d432f2 for geojson validation
+# and database insertion using python. Cheers bro!
+
+# Start PostgreSQL in the background
+docker-entrypoint.sh postgres &
 
 # Wait for PostgreSQL to be ready
 wait_for_postgres
