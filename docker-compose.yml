@@ -20,18 +20,17 @@ services:
   web:
     build:
       context: ./web
-      target: development
     container_name: next-app
     ports:
       - "3000:3000"
     volumes:
-      - ./web/src:/app/src
-      - ./web/public:/app/public
+      - ./web:/app
     environment:
-      - NODE_ENV=development
-      - WDS_SOCKET_HOST=127.0.0.1
-      - CHOKIDAR_USEPOLLING=true
-      - WATCHPACK_POLLING=true
+        NODE_ENV: development
+        WDS_SOCKET_HOST: 127.0.0.1
+        CHOKIDAR_USEPOLLING: true
+        WATCHPACK_POLLING: true
+        DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_HOST}:${DB_PORT}/${POSTGRES_DB}"
     depends_on:
       - db
 

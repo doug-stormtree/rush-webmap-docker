@@ -1,12 +1,6 @@
-# web/Dockerfile
-# Base stage
-FROM node:lts-alpine AS base
+FROM node:lts-alpine
 WORKDIR /app
-COPY package.json ./
-RUN npm install
 COPY . .
-
-# Development stage
-FROM base AS development
+RUN npm install
 EXPOSE 3000
 CMD ["npm", "run", "dev"]
