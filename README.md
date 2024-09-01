@@ -1,30 +1,101 @@
-# What's The RUSH?
-The Resilient Urban Systems and Habitat (or R.U.S.H.) Initiative is a collective mapping effort that leverages both community knowledge and government data to idenfity, track, and share climate change data, community resources, and implemented solutions.
+# With Docker Compose
 
-We would like to recognize that the R.U.S.H. Initiative is exploring this work on the unceded and unsurrendered territories of the lək̓ʷəŋən and SENĆOŦEN speaking peoples. Maps have a long history of erasure of Indigenous cultures and territories. Our goal is to promote tools that support the healing of ecosystems and communities so that all beings can live their best life.
+This example contains everything needed to get a Next.js development and production environment up and running with Docker Compose.
 
-Visit our website [here](https://whatstherush.ca).
+## Benefits of Docker Compose
 
-## For anyone
-If you have any questions or want to to contribute to the R.U.S.H. Initiative, either as a developer or in some other capacity, feel free to reach out to our team lead _Anne-Marie Daniel_ -- annemarie@naturnd.com, or one of our developers _Doug Stormtree_ -- Doug@naturnd.com, and _Sam Morris_ -- dodobird181@gmail.com.
+- Develop locally without Node.js or TypeScript installed ✨
+- Easy to run, consistent development environment across macOS, Windows, and Linux teams
+- Run multiple Next.js apps, databases, and other microservices in a single deployment
+- Multistage builds combined with [Output Standalone](https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files) outputs up to 85% smaller apps (Approximately 110 MB compared to 1 GB with create-next-app)
+- Easy configuration with YAML files
 
-## For developers
-We use GitHub issues to track project contributions. If you would like to contribute please make a fork and open a pull-request against this repository.
+## How to use
 
-### Setup Environment
-1. Fork this repo.
-2. Clone it onto your local machine.
-2. Create a `.env` file in the project directory with the following info:
-    ```
-    POSTGRES_USER=awesome_rushapp_contributor
-    POSTGRES_PASSWORD=super_secret_local_development_password
-    POSTGRES_DB=postgres
-    DB_HOST=db
-    DB_PORT=5432
-    ```
-    This file is read by docker-compose.yml to set container environment variables.
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
-3. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) on your local machine.
-4. Build the app using `docker compose build` while in the main project directory.
-5. Run the app using `docker compose up`.
-6. That's it! Please see the developer contact emails above if you have any questions, comments, or concerns. Cheers, and happy coding!
+```bash
+npx create-next-app --example with-docker-compose with-docker-compose-app
+```
+
+```bash
+yarn create next-app --example with-docker-compose with-docker-compose-app
+```
+
+```bash
+pnpm create next-app --example with-docker-compose with-docker-compose-app
+```
+
+Optionally, after the installation is complete:
+
+- Run `cd next-app`, then run `npm install` or `yarn install` or `pnpm install` to generate a lockfile.
+
+It is recommended to commit a lockfile to version control. Although the example will work without one, build errors are more likely to occur when using the latest version of all dependencies. This way, we're always using a known good configuration to develop and run in production.
+
+## Prerequisites
+
+Install [Docker Desktop](https://docs.docker.com/get-docker) for Mac, Windows, or Linux. Docker Desktop includes Docker Compose as part of the installation.
+
+## Development
+
+First, run the development server:
+
+```bash
+# Create a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+docker network create rush_network
+
+# Build dev
+docker compose -f docker-compose.dev.yml build
+
+# Up dev
+docker compose -f docker-compose.dev.yml up
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+
+## Production
+
+Multistage builds are highly recommended in production. Combined with the Next [Output Standalone](https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files) feature, only `node_modules` files required for production are copied into the final Docker image.
+
+First, run the production server (Final image approximately 110 MB).
+
+```bash
+# Create a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+docker network create rush_network
+
+# Build prod
+docker compose -f docker-compose.prod.yml build
+
+# Up prod in detached mode
+docker compose -f docker-compose.prod.yml up -d
+```
+
+Alternatively, run the production server without multistage builds (Final image approximately 1 GB).
+
+```bash
+# Create a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+docker network create rush_network
+
+# Build prod without multistage
+docker compose -f docker-compose.prod-without-multistage.yml build
+
+# Up prod without multistage in detached mode
+docker compose -f docker-compose.prod-without-multistage.yml up -d
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Useful commands
+
+```bash
+# Stop all running containers
+docker kill $(docker ps -aq) && docker rm $(docker ps -aq)
+
+# Free space
+docker system prune -af --volumes
+```
