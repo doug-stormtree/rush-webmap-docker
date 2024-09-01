@@ -60,6 +60,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Environment variables must be redefined at run time
+# TODO: Sam and Doug, before deploying we will need to
+# redefine our environment variables here.
 ARG ENV_VARIABLE
 ENV ENV_VARIABLE=${ENV_VARIABLE}
 ARG NEXT_PUBLIC_ENV_VARIABLE
