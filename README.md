@@ -36,6 +36,9 @@ docker-compose -f docker-compose.dev.yml exec next-app npx prisma studio
 # this command after making changes to the prisma.schema file so that they are
 # reflected in the database.
 docker-compose -f docker-compose.dev.yml exec next-app npx prisma migrate dev
+
+# Shell into the database.
+docker compose -f docker-compose.dev.yml exec -it db psql -U admin -d postgres
 ```
 
 
