@@ -22,10 +22,7 @@ docker compose -f docker-compose.dev.yml build
 # Up dev
 docker compose -f docker-compose.dev.yml up
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-Some useful commands are as follows:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. That's it, you're all set up! Below are some useful commands to help you get started.
 ```bash
 # See container logs. You can add "db" or "next-app" after "logs" to zero-in
 # on either container's individual logs.
