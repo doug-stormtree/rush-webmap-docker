@@ -7,9 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique @db.VarChar(255)
-  password String
-  createdAt DateTime @default(now())
+model FeatureCollection {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(255) //The name of the Feature Collection.
+  crs       Json?
+  features  Json
+  createdAt DateTime  @default(now())
 }
