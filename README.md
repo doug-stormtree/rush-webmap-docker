@@ -1,30 +1,45 @@
 # What's The RUSH?
-The Resilient Urban Systems and Habitat (or R.U.S.H.) Initiative is a collective mapping effort that leverages both community knowledge and government data to idenfity, track, and share climate change data, community resources, and implemented solutions.
+Visit [What's the RUSH](https://whatstherush.ca).
 
-We would like to recognize that the R.U.S.H. Initiative is exploring this work on the unceded and unsurrendered territories of the lək̓ʷəŋən and SENĆOŦEN speaking peoples. Maps have a long history of erasure of Indigenous cultures and territories. Our goal is to promote tools that support the healing of ecosystems and communities so that all beings can live their best life.
+The Resilient Urban Systems and Habitat, or RUSH, Initiative is a collective mapping effort that leverages both community knowledge and government data to idenfity, track, and share climate change data, community resources, and implemented solutions.
 
-Visit our website [here](https://whatstherush.ca).
+We would like to recognize that the RUSH Initiative is exploring this work on the unceded and unsurrendered territories of the lək̓ʷəŋən and SENĆOŦEN speaking peoples. Maps have a long history of erasure of Indigenous cultures and territories. Our goal is to promote tools that support the healing of ecosystems and communities so that all beings can live their best life.
 
 ## For anyone
-If you have any questions or want to to contribute to the R.U.S.H. Initiative, either as a developer or in some other capacity, feel free to reach out to our team lead _Anne-Marie Daniel_ -- annemarie@naturnd.com, or one of our developers _Doug Johnson_ -- Doug@naturnd.com, _Sam Morris_ -- dodobird181@gmail.com.
+If you have any questions or want to to contribute to the RUSH Initiative, either as a developer or in some other capacity, feel free to reach out to our team lead _Anne-Marie Daniel_ -- annemarie@naturnd.com, or one of our developers _Doug Johnson_ -- Doug@naturnd.com, _Sam Morris_ -- dodobird181@gmail.com.
 
-## For developers
-We use GitHub issues to track project contributions. If you would like to contribute please make a fork and open a pull-request against this repository.
+## Development
+First, install [Docker Desktop](https://docs.docker.com/get-docker) for Mac, Windows, or Linux. Docker Desktop includes Docker Compose as part of the installation. Run Docker Desktop on your local machine. This starts the "Docker Daemon" which works in the background to communicate between the Docker CLI and your OS.
 
-### Setup Environment
-1. Fork this repo.
-2. Clone it onto your local machine.
-2. Create a `.env` file in the project directory with the following info:
-    ```
-    POSTGRES_USER=awesome_rushapp_contributor
-    POSTGRES_PASSWORD=super_secret_local_development_password
-    POSTGRES_DB=postgres
-    DB_HOST=db
-    DB_PORT=5432
-    ```
-    This file is read by docker-compose.yml to set container environment variables.
+Then, run the development server:
+```bash
+# Create a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+docker network create rush_network
 
-3. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) on your local machine.
-4. Build the app using `docker compose build` while in the main project directory.
-5. Run the app using `docker compose up`.
-6. That's it! Please see the developer contact emails above if you have any questions, comments, or concerns. Cheers, and happy coding!
+# Build dev (this may take ~5-10 mins if not cached.)
+docker compose -f docker-compose.dev.yml build
+
+# Up dev
+docker compose -f docker-compose.dev.yml up
+```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. That's it, you're all set up! Below are some useful commands to help you get started.
+```bash
+# See container logs. You can add "db" or "next-app" after "logs" to zero-in
+# on either container's individual logs.
+docker-compose -f docker-compose.dev.yml logs
+
+# Start the Prisma Admin site, which can be used to view and edit the app's data.
+docker-compose -f docker-compose.dev.yml exec next-app npx prisma studio
+
+# Apply a Prisma ORM schema change. This updates the database's schema and
+# may also edit the prisma.schema file in the process. You should run
+# this command after making changes to the prisma.schema file so that they are
+# reflected in the database.
+docker-compose -f docker-compose.dev.yml exec next-app npx prisma migrate dev
+
+# Shell into the database.
+docker compose -f docker-compose.dev.yml exec -it db psql -U admin -d postgres
+```
+
+
