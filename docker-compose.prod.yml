@@ -15,7 +15,16 @@ services:
     networks:
       - rush_network
 
-  # Add more containers below (nginx, postgres, etc.)
+  db:
+    build:
+      context: ./db
+    container_name: postgres
+    env_file:
+      - .env
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    networks:
+      - rush_network
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
