@@ -5,7 +5,7 @@ The Resilient Urban Systems and Habitat, or RUSH, Initiative is a collective map
 
 We would like to recognize that the RUSH Initiative is exploring this work on the unceded and unsurrendered territories of the lək̓ʷəŋən and SENĆOŦEN speaking peoples. Maps have a long history of erasure of Indigenous cultures and territories. Our goal is to promote tools that support the healing of ecosystems and communities so that all beings can live their best life.
 
-If you have any questions or want to to contribute to the R.U.S.H. Initiative, either as a developer or in some other capacity, feel free to reach out to our team lead _Anne-Marie Daniel_ -- annemarie@naturnd.com, or one of our developers _Doug Stormtree_ -- Doug@naturnd.com, and _Sam Morris_ -- dodobird181@gmail.com.
+If you have any questions or want to to contribute to the RUSH Initiative, either as a developer or in some other capacity, feel free to reach out to our team lead _Anne-Marie Daniel_ -- annemarie@naturnd.com, or one of our developers _Doug Stormtree_ -- Doug@naturnd.com, and _Sam Morris_ -- dodobird181@gmail.com.
 
 ## Development
 First, install [Docker Desktop](https://docs.docker.com/get-docker) for Mac, Windows, or Linux. Docker Desktop includes Docker Compose as part of the installation. Run Docker Desktop on your local machine. This starts the "Docker Daemon" which works in the background to communicate between the Docker CLI and your OS.
@@ -24,3 +24,18 @@ docker compose -f docker-compose.dev.yml up
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+Some useful commands are as follows:
+```bash
+# See container logs. You can add "db" or "next-app" after "logs" to zero-in
+# on either container's individual logs.
+docker-compose -f docker-compose.dev.yml logs
+
+# Apply a Prisma ORM schema change. This updates the database's schema and
+# may also edit the prisma.schema file in the process. You should run
+# this command after making changes to the prisma.schema file so that they are
+# reflected in the database.
+docker-compose -f docker-compose.dev.yml exec next-app npx prisma migrate dev
+```
+
+
