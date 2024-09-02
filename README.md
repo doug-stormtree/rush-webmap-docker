@@ -28,6 +28,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 # on either container's individual logs.
 docker-compose -f docker-compose.dev.yml logs
 
+# Start the Prisma Admin site, which can be used to view and edit the app's data.
+docker-compose -f docker-compose.dev.yml exec next-app npx prisma studio
+
 # Apply a Prisma ORM schema change. This updates the database's schema and
 # may also edit the prisma.schema file in the process. You should run
 # this command after making changes to the prisma.schema file so that they are
