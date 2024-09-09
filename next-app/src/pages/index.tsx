@@ -14,25 +14,24 @@ interface Props {
   featureCollections: FeatureCollection[];
 }
 
-const Home: React.FC<Props> = ({ featureCollections }) => {
+const Home: React.FC<Props> = (props) => {
   return (
     <div>
       <h1>Users</h1>
-      <ul>
-        {featureCollections.map((fc) => (
-          <li key={fc.id}>{fc.email}</li>
-        ))}
-      </ul>
+      {props.featureCollections.map((fc: FeatureCollection) => {
+        return <p key={fc.id}>{fc.name}</p>
+      })}
     </div>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const featureCollections = await prisma.featureCollection.findMany();
-  console.log(Object.keys(featureCollections));
-  //console.log("feature collections  awd aw d: " + JSON.stringify(featureCollections, null, 4));
+  const featureCollections = await prisma.featureCollection.findMany()
+
   return {
-    props: { users: usersWithSerializedDates },
+    props: { featureCollections: [
+      { ...featureCollections[0], createdAt: featureCollections[0].createdAt.toISOString() }
+    ] },
   };
 };
 
