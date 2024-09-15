@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 
+// These styles apply to every route in the application
+import './global.css'
+
 export const metadata: Metadata = {
   title: 'RUSH',
   description: 'Resilient Urban Systems & Habitats',
